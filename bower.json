@@ -1,0 +1,30 @@
+{
+  "name": "Expense Tracker",
+  "homepage": "https://github.com/smavuleti/et_simpleBootstrap",
+  "authors": [
+    "sruthi mavuleti"
+  ],
+  "description": "Application where we can easily track our expenses",
+  "main": "index.html",
+  "keywords": [
+    "expense",
+    "tracker"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "1.9.1",
+    "angular": "^1.6.4",
+    "angularjs-datepicker": "^2.1.17",
+    "angular-local-storage": "^0.5.2"
+  }
+}

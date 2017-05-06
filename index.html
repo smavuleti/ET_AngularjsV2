@@ -1,0 +1,251 @@
+<!Doctype Html>
+<html lang="en" ng-app="expenseTrackerDisplay">
+<head>
+    <title> Expense Tracker </title>
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="css/mystyles.css" rel="stylesheet">
+  <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>-->
+    
+
+</head>
+
+<body>
+
+    <header class="jumbotron">
+
+    <div class = "container">
+            <div class = "row row-header">
+                <div class="col-xs-12 col-sm-12">
+                    <h1>Family Expense Tracker</h1>
+                    <p style="padding:20px; color=Black"></p>
+                    <p>It helps to track the expenses made by users of a family.</p>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="../index.html"> Expenditure Tracker </a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li><a href="public/pages/addExpenditure.html">Add Expenditure </a></li>
+      <li> <a href="toSettings()"> Settings </a></li>
+      <li> <a href="#"> Profile </a></li>
+    </ul>
+</nav>
+<div class="container-fluid">
+   <div class="row row-content" ng-controller ="expenseTrackerDisplayController as expCtrl">
+       
+       <div class="col-xs-12 col-sm-6">
+           <div class="table-responsive">
+           <table class="table table-striped">
+                <thead>
+                <tr>
+                  
+                  <th>Category</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Store Name</th>
+                    <th> Edit Expense</th>
+                </tr>
+              </thead>
+               <tbody>
+                <tr ng-repeat="expense in expCtrl.expenses">
+                  
+                  <td>{{expense.categoryName}}</td>
+                  <td>{{expense.date}}</td>
+                  <td>{{expense.amount | currency}}</td>
+                  <td>{{expense.storeName}}</td>
+                    <td> <span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#editExpense"/></td>
+                </tr>
+               </tbody>
+               
+               </table>
+           
+           </div>
+           
+           
+       </div>
+       
+      <div class="col-xs-12 col-sm-6">
+         <div id="container" style="width:100%; height:400px;"class="col-xs-12 col-sm-4"></div>
+        
+       </div>
+    </div>
+    </div>
+    
+    
+    <div id="editExpense" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            
+    <!--Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                <form class="form-horizontal">
+                <div class="form-group">
+                  <div class="dropdown">
+                            <button class ="btn dropdown-toggle addExpenseDropdownBtns" type="button" data-toggle="dropdown"> Category 
+                             <span class="caret" > </span> </button>
+                                    <ul class="dropdown-menu">
+                                        <li> <a href="#" > Fruits </a></li>
+                                        <li> <a href="#" > Vegetables </a> </li>
+                                        <li> <a href="#" >  Home Appliances </a> </li>
+                                        <li> Other </li>
+                                   </ul>
+                         </div>
+                </div>
+
+                   <div class="input-group date" data-provide="datepicker">
+                <input type="text" class="form-control" placeholder="MM/DD/YYYY">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+
+                  <div class="input-group" >
+
+                   <input type="text" class="form-control" placeholder="Amount"> <span class="input-group-addon">$</span>
+                  </div>
+
+                <input type ="text" class="form-control" placeholder="Store Name">
+                <button type="submit" class="btn btn-default">Save Changes</button>
+                                  <button type="button" class="btn btn-default"
+                                   data-dismiss="modal">Cancel</button>
+              </form>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+
+ <script src="bower_components/angular/angular.min.js"></script>   
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.min.js"></script> 
+
+<!--Angular controller code-->
+<script>
+    
+    
+    var app= angular.module('expenseTrackerDisplay',[]);
+    app.controller('expenseTrackerDisplayController', function(){
+         /*expenses=[
+                                         {
+                                         categoryName: 'Fruits',
+                                         date: '04/23/2017',
+                                         amount: '89.09',
+                                         storeName: 'Safeway'
+                                    
+                                         },
+                                         {
+                                         categoryName: 'Movies',
+                                         date: '04/27/2017',
+                                         amount: '30.09',
+                                         storeName: 'Regal Movies'
+                                    
+                                         },
+                                         {
+                                         categoryName: 'Vegetables',
+                                         date: '04/28/2017',
+                                         amount: '89.09',
+                                         storeName: 'New India Bazar'
+                                    
+                                         },
+                                         {
+                                         categoryName: 'Snacks',
+                                         date: '04/28/2017',
+                                         amount: '50.09',
+                                         storeName: 'Walmart'
+                                    
+                                         }];
+        */
+        this.expenses = JSON.parse(localStorage.getItem('data'));
+                    //this.expenses = expenses;
+        
+        
+        
+    })
+    
+    
+    </script>
+    <script type="text/javascript" src="./js/app.js"></script>
+    <script type="text/javascript" src="./js/controller.js"></script>
+
+</body>
+ <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    
+
+    <!-- Bootstrap Date-Picker Plugin -->
+    <!--it is displaying the drop down -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <!-- it's just for arrow -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    
+    
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+    
+    <script type="text/javascript">
+    
+    Highcharts.chart('container', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Reports'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                }
+            }
+        }
+    },
+    series: [{
+        name: 'Categories',
+        colorByPoint: true,
+        data: [{
+            name: 'Other',
+            y: 56.33
+        }, {
+            name: 'Vegetables',
+            y: 24.03,
+            sliced: true,
+            selected: true
+        }, {
+            name: 'Fruits',
+            y: 10.38
+        }, {
+            name: 'Snacks',
+            y: 4.77
+        }, {
+            name: 'Movies',
+            y: 0.91
+        }, {
+            name: 'Clothing',
+            y: 0.2
+        }]
+    }]
+});
+    
+    </script>
+</html>

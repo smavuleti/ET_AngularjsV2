@@ -1,0 +1,16 @@
+{
+  "name": "ETracker",
+  "version": "2.0.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "Sruthi",
+  "contributors": [],
+  "dependencies": {
+    "angularjs-datepicker": "^2.1.17"
+  }
+}
